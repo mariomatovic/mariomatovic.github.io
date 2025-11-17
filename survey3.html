@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Final Feedback</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+  :root {
+    --accent-color: #ff793f;
+    --text-color: #ecf0f1;
+  }
+  body {
+    background-color: #0f1e2b;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px; /* Add padding for small screens */
+  }
+  main {
+    width: 100%;
+    max-width: 650px; /* Control the maximum width */
+    margin: 40px auto; /* Center the card with space on top/bottom */
+  }
+  .card {
+    background: #1c2f42;
+    padding: 30px;
+    border-radius: 12px;
+  }
+
+  /* --- FORM STYLING --- */
+  fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 30px;
+  }
+  legend {
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    line-height: 1.5;
+  }
+  
+  fieldset label {
+    display: grid; /* Use Grid for robust alignment */
+    grid-template-columns: auto 1fr; /* Column for button, column for text */
+    align-items: center; /* Vertically center */
+    gap: 12px; /* Space between button and text */
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+  fieldset label input[type="radio"] {
+    width: 18px; /* Set a consistent size */
+    height: 18px;
+  }
+
+  /* --- STYLING FOR THE NEW TEXTAREA --- */
+  textarea {
+    width: 100%;
+    min-height: 80px;
+    background-color: #0f1e2b;
+    color: var(--text-color);
+    border: 1px solid #334e68;
+    border-radius: 6px;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    margin-top: 8px;
+  }
+  textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+  }
+
+  /* --- BUTTON & SPINNER STYLING (Unchanged) --- */
+  button {
+    /* Assuming button styles from style.css, adding a bit for consistency */
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    background-color: var(--accent-color);
+    color: white;
+    cursor: pointer;
+  }
+  button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<main class="wrap">
+  <section class="card">
+    <div id="form-container">
+      <h2>Final Step: Feedback</h2>
+      <p style="margin-bottom: 30px;">Thank you for your valuable insights. Please answer these final questions.</p>
+      
+      <form id="survey3Form">
+        
+        <fieldset>
+          <legend>1. How valuable was this process for self-reflection?</legend>
+          <textarea name="SelfReflectionValue" placeholder="Your thoughts here..." required></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>2. Based on your experience today, what relevance do you see these topics having for your team going forward?</legend>
+          <textarea name="TeamFocusImportance" placeholder="Your thoughts here..." required></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>3. How do you feel about taking part in team or individual sessions from time to time?</legend>
+          <textarea name="ParticipationOpenness" placeholder="Your thoughts here..." required></textarea>
+        </fieldset>
+
+        <button type="submit" id="submitBtn">Finish</button>
+      </form>
+    </div>
+    <div id="thankYouMsg" style="display:none; text-align:center; color: var(--accent-color); font-size: 1.2rem; padding: 40px 0;"></div>
+  </section>
+</main>
+
+<script>
+// --- JAVASCRIPT IS UNCHANGED AND FULLY FUNCTIONAL ---
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzRKFwaLAwECH0mpGz5B0dsEoQkLq2fF3UlX1SO_jwT1fSx-tOIfbNeFQ3vRl-7HEbUtA/exec';
+
+const urlParams = new URLSearchParams(window.location.search);
+const company = urlParams.get('Company') || '';
+
+if (!company) {
+  window.location.href = 'index.html';
+}
+
+const role = urlParams.get('Role') || '';
+const department = urlParams.get('Department') || '';
+
+const form = document.getElementById('survey3Form');
+const submitBtn = document.getElementById('submitBtn');
+const originalButtonHTML = submitBtn.innerHTML;
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span class="spinner"></span>Finishing...';
+
+  const formData = new FormData(form);
+  const obj = {
+    Company: company,
+    Role: role,
+    Department: department,
+    SelfReflectionValue: formData.get('SelfReflectionValue'),
+    TeamFocusImportance: formData.get('TeamFocusImportance'),
+    ParticipationOpenness: formData.get('ParticipationOpenness')
+  };
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({ action: 'submitSurvey', sheet: 'Survey3Feedback', responses: obj })
+  }).then(r => r.json()).then(data => {
+    const formContainer = document.getElementById('form-container');
+    const thankYouMsg = document.getElementById('thankYouMsg');
+    if (data.success) {
+      formContainer.style.display = 'none';
+      thankYouMsg.textContent = 'Thank you! Your feedback has been submitted.';
+      thankYouMsg.style.display = 'block';
+    } else {
+      thankYouMsg.textContent = 'An error occurred. Please try again.';
+      thankYouMsg.style.color = 'red';
+      thankYouMsg.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalButtonHTML;
+    }
+  }).catch(err => {
+    console.error(err);
+    const thankYouMsg = document.getElementById('thankYouMsg');
+    thankYouMsg.textContent = 'A network error occurred. Please try again.';
+    thankYouMsg.style.color = 'red';
+    thankYouMsg.style.display = 'block';
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalButtonHTML;
+  });
+});
+</script>
+
+</body>
+</html>
+```

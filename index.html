@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>People, Culture & Performance Specialist</title>
+  <link rel="icon" href="your-logo.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --left-bg: #0f1e2b;
+      --right-bg: #1c2f42;
+      --accent-color: #ff793f;
+      --text-color: #ecf0f1;
+      --quote-color: #d4af7f;
+      --font-main: 'Montserrat', sans-serif;
+      --font-title: 'Playfair Display', serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { font-family: var(--font-main); background: var(--left-bg); color: var(--text-color); }
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+    main { width: 100%; }
+
+    .quote-top {
+      background: var(--quote-color);
+      color: #0f1e2b;
+      padding: 16px 20px;
+      font-style: italic;
+      text-align: center;
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      line-height: 1.6;
+    }
+
+    .hero-section {
+      display: flex;
+      width: 100%;
+      border-bottom: 2px solid var(--accent-color);
+    }
+
+    .left-container {
+      flex: 7;
+      padding: 40px;
+    }
+    .hero-left-text {
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .hero-left-text h1 { font-family: var(--font-title); font-size: clamp(2rem, 2.8vw, 2.5rem); color: var(--accent-color); margin-bottom: 16px; }
+    
+    .services {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .service-box {
+      background: linear-gradient(135deg, #ff793f 0%, #ffb17a 100%);
+      color: #fff;
+      text-decoration: none;
+      padding: 16px;
+      border-radius: 16px;
+      flex: 1 1 0;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 0.95rem;
+    }
+    .service-box.highlight-red-border { border: 3px solid red; }
+    .service-box p { margin-top: 8px; font-size: 0.85rem; line-height: 1.4; }
+    .service-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(255,121,63,0.4);
+    }
+    .service-box.placeholder {
+      background: linear-gradient(135deg, #555555 0%, #777777 100%);
+      cursor: default;
+      opacity: 0.9;
+    }
+    .service-box.placeholder:hover { transform: none; box-shadow: none; }
+
+    .right-container {
+      flex: 2;
+      background: var(--right-bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+      position: relative;
+      border-left: 2px solid var(--accent-color);
+    }
+    .hero-right {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      gap: 20px;
+    }
+    .hero-right h3 { 
+      font-family: var(--font-title); 
+      font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+      color: var(--accent-color); 
+      font-weight: bold; 
+    }
+    .hero-right p { 
+      font-size: clamp(0.9rem, 1.1vw, 0.92rem); 
+      line-height: 1.5; 
+    }
+    .hero-right .description-text {
+        font-size: clamp(0.8rem, 1vw, 0.85rem);
+    }
+    .hero-right .highlight-red { color: red; font-weight: 600; }
+    .hero-right a {
+      background: var(--accent-color);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      align-self: center;
+    }
+    .hero-right a:hover { background: #ff9c6a; }
+
+    .content-area {
+      padding: 40px;
+    }
+
+    .relocated-photo-wrapper {
+      max-width: 450px;
+      width: 100%;
+      margin: 40px auto 0 auto; /* Give it space from the content above */
+    }
+    .relocated-photo-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      filter: grayscale(100%);
+      transition: filter 0.4s ease;
+    }
+    .relocated-photo-wrapper img:hover {
+      filter: grayscale(0%);
+    }
+
+    .card { background: var(--right-bg); padding: 25px; border-radius: 12px; margin-top: 40px; font-size: 0.95rem; line-height: 1.7; }
+    .card h2 { font-family: var(--font-title); color: var(--accent-color); margin-bottom: 12px; font-size: 1.8rem; }
+    .card ul { list-style: none; padding: 0; }
+    .card ul li { margin-bottom: 10px; padding-left: 1.2em; position: relative; }
+    .card ul li::before {
+      content: '•';
+      color: var(--accent-color);
+      position: absolute;
+      left: 0;
+      font-size: 1.2em;
+      line-height: 1;
+    }
+    .card ul li strong { color: var(--quote-color); }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(236,240,241,0.5);
+      padding: 20px 0;
+      background: var(--left-bg);
+    }
+
+    @media (max-width: 900px) {
+      .hero-section { flex-direction: column; }
+      .left-container, .right-container { flex: unset; width: 100%; padding: 20px; }
+      .right-container { order: -1; border-left: none; border-bottom: 2px solid var(--accent-color); }
+      .hero-section { border-bottom: none; }
+      .services { flex-direction: column; }
+      .content-area { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <div class="quote-top">
+      "A company will be better than it is if all of us become better than we were." — Zoran Đinđić
+    </div>
+
+    <div class="hero-section">
+      <div class="left-container">
+        <div class="hero-left-text">
+          <h1>People, Culture & Performance Specialist</h1>
+          <div class="services">
+            <a class="service-box highlight-red-border" href="survey1.html">
+              <strong>Free Culture Evaluation</strong>
+              <p>Get a snapshot of your team's dynamics with this anonymous survey.</p>
+            </a>
+            <div class="service-box placeholder">
+              <strong>Team Services</strong>
+              <p>Coming soon</p>
+            </div>
+            <div class="service-box placeholder">
+              <strong>Speaking</strong>
+              <p>Coming soon</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-container">
+        <div class="hero-right">
+          <div>
+            <h3>Mental Performance Coach for Athletes</h3>
+            <p class="description-text">Supporting individual athletes across various sports for several years in Slovenia, followed by a first-league professional football club in Finland—working with U17, reserve, senior men’s and women’s teams, as well as individual players on mental performance while nurturing their well-being.</p>
+            <p class="highlight-red">Is your child an ambitious teen athlete?</p>
+          </div>
+          <a href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-area">
+      
+      <section id="how-i-help" class="card">
+        <h2>From a Group of Individuals to a Performing Team</h2>
+        <p>Does your team feel like a collection of nice, talented people who work alongside each other, but don't truly pull in one direction towards a greater mission?</p>
+        
+        <p>My approach is different. We focus on improving performance while preserving well-being, because the most successful teams are both effective and healthy.</p>
+      
+        <ul>
+          <li>
+            <strong>See the Full Picture:</strong> We will uncover the real dynamics of your team—the unspoken rules, the hidden strengths, and the communication patterns that standard HR surveys miss.
+          </li>
+          <li>
+            <strong>Build Your Team's Foundation:</strong> We will work together to define your team's core values, set clear standards for performance, and build a strong, shared identity.
+          </li>
+          <li>
+            <strong>Unlock Your People's Potential:</strong> We will identify the unique strengths of each employee and create an environment where they are motivated to use them fully.
+          </li>
+          <li>
+            <strong>Develop Real Team Chemistry:</strong> We will build the trust, cohesion, and psychological safety that allows a group to become a true, resilient team.
+          </li>
+          <li>
+            <strong>Inspire a Shared Vision:</strong> As a speaker, I can help unite your team and motivate them to pursue your common goals with renewed energy.
+          </li>
+        </ul>
+      </section>
+
+<div class="relocated-photo-wrapper">
+        <img src="workphoto.png" alt="A professional headshot of Mario Matovic">
+      </div>
+
+      <section id="about" class="card">
+        <h2>About Me</h2>
+        <p>With a bachelor’s degree in Organizational Sciences and a master’s in Biopsychology, I’m a people-focused professional. My path has led me from technical and event environments to sports performance coaching, which taught me how people perform best when the entire team pulls in one direction, leaders believe in their team members, communication is open, and innovation and freedom are encouraged — supported by strong identity, values, and standards.</p>
+      </section>
+
+      <section id="biopsychology" class="card">
+        <h2>What is Biopsychology?</h2>
+        <p>Biopsychology, also called behavioral neuroscience, is the branch of psychology that studies how our brain and nervous system influence our thoughts, emotions, and behaviors. It explores how biological processes—like brain activity, hormones, and genetics—interact with our experiences to shape how we think, feel, and act. In simple terms, it’s the science of understanding the mind through the body.</p>
+      </section>
+
+<section id="philosophy" class="card">
+  <h2>My Philosophy</h2>
+  
+  <blockquote class="philosophy-quote">
+    <p>"A boy comes to me with a spark of interest, I feed the spark and it becomes a flame. I feed the flame and it becomes a fire. I feed the fire and it becomes a roaring blaze." — <cite> Cus D'Amato </cite></p>
+  </blockquote>
+  
+  <p>This principle is the foundation of my work. Whether with an individual athlete or a corporate team, my goal is not to teach, but to facilitate growth. I do this by carefully observing and listening, and then challenging perspectives and offering new ideas. My role is to find that initial spark of potential and provide the right questions and environment to help it grow into a confident, self-sustaining fire of high performance and passion.</p>
+</section>
+
+
+            <section id="concepts" class="card">
+        <h2>Some of the psychological concepts used</h2>
+        <ul>
+          <li><strong>Team dynamics</strong> — social cognition, communication patterns, team cohesion, leadership, team identity, standards, and values.</li>
+          <li><strong>Thought patterns</strong> — automatic thoughts, cognitive distortions, schemas, core beliefs, and defense mechanisms.</li>
+          <li><strong>Emotional regulation</strong> — window of tolerance, emotional clarity, suppression, distraction, acceptance, and expression.</li>
+          <li><strong>Core beliefs and identity</strong> — self-schemas, implicit self-schemas, narrative identity, and internalized scripts.</li>
+          <li><strong>Motivation</strong> — self-determination theory, self-efficacy, locus of control, intrinsic vs. extrinsic motivation.</li>
+          <li><strong>Meaning and purpose</strong> — coherence, purpose, significance, values clarification, cognitive reframing, narrative reconstruction.</li>
+          <li><strong>Resilience and adaptation</strong> — psychological flexibility, coping repertoires, neuroplasticity, and recovery.</li>
+          <li><strong>Integration and wholeness</strong> — self-integration, congruence, mind–body coherence, holistic processing, and authentic functioning.</li>
+          <li><strong>Attention, concentration, and flow</strong> — flow state, selective attention, working memory under stress, and mindfulness.</li>
+        </ul>
+      </section>
+
+
+      <section id="contact" class="card">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:mariomatovic@gmail.com" style="color:var(--accent-color);">mariomatovic@gmail.com</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © Mario Matovic, 2025
+  </footer>
+
+</body>
+</html>

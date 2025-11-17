@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Strengths Insights</title>
+<link rel="stylesheet" href="style.css"/>
+<style>
+  letters {
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  #submitMsg2 {
+    margin-top: 10px;
+    color: red;
+  }
+  #nameFields input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+  }
+  
+  .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  @keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+  }
+  @-webkit-keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card">
+    <h2>Strengths Insights</h2>
+
+    <form id="survey2Form">
+      <div id="nameFields" style="display:none;">
+        <input type="text" id="name" name="name" placeholder="Name">
+        <input type="text" id="surname" name="surname" placeholder="Surname">
+      </div>
+
+      <input type="hidden" name="Company" id="companyField">
+      <input type="hidden" name="Role" id="roleField">
+      <input type="hidden" name="Department" id="departmentField">
+
+      <letters>1. What are you naturally great at that people at work don’t know or don’t make full use of?</letters>  
+      <textarea name="Q1" required></textarea>  
+  
+      <letters>2. When you do those things, what are the specific actions or processes happening in your mind and body?</letters>  
+      <textarea name="Q2" required></textarea>  
+  
+      <letters>3. What internal ability allows you to do those actions?</letters>  
+      <textarea name="Q3" required></textarea>  
+  
+      <letters>4. Think back to childhood.
+What did you love doing when you had total freedom to choose, and what about it captivated you?</letters>  
+      <textarea name="Q4" required></textarea>  
+  
+      <button type="submit" id="submitBtn">Submit Survey</button>
+      <div id="submitMsg2"></div>
+    </form>
+  </section>
+</main>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzRKFwaLAwECH0mpGz5B0dsEoQkLq2fF3UlX1SO_jwT1fSx-tOIfbNeFQ3vRl-7HEbUtA/exec';
+
+const urlParams = new URLSearchParams(window.location.search  );
+const company = urlParams.get('Company') || '';
+
+// Prevent direct access
+if (!company) {
+  window.location.href = 'survey1.html';
+}
+
+const role = urlParams.get('Role') || '';
+const department = urlParams.get('Department') || '';
+const requireName = urlParams.get('RequireName') === 'true';
+
+document.getElementById('companyField').value = company;
+document.getElementById('roleField').value = role;
+document.getElementById('departmentField').value = department;
+
+if (requireName) {
+  const nameFieldsDiv = document.getElementById('nameFields');
+  const nameInput = document.getElementById('name');
+  const surnameInput = document.getElementById('surname');
+
+  nameFieldsDiv.style.display = 'block';
+  nameInput.required = true;
+  surnameInput.required = true;
+}
+
+function setupForm(formId, sheetName) {
+  const form = document.getElementById(formId);
+  const submitMsg = document.getElementById('submitMsg2');
+  const submitBtn = document.getElementById('submitBtn');
+  const originalButtonHTML = submitBtn.innerHTML;
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner"></span>Processing...';
+    submitMsg.textContent = '';
+
+    const formData = new FormData(form);
+    
+    const name = formData.get('name') || '';
+    const surname = formData.get('surname') || '';
+    const fullName = name && surname ? `${name} ${surname}` : '';
+
+    const obj = {
+      Company: company,
+      Role: role,
+      Department: department,
+      NameAndSurname: fullName,
+      Q1: formData.get('Q1'),
+      Q2: formData.get('Q2'),
+      Q3: formData.get('Q3'),
+      Q4: formData.get('Q4')
+    };
+
+    fetch(SCRIPT_URL,{
+      method:'POST',
+      body: JSON.stringify({action:'submitSurvey', sheet:sheetName, responses: obj})
+    }).then(r=>r.json()).then(data=>{
+      if(data.success){
+        const cardSection = document.querySelector('.card');
+        if (cardSection) {
+          cardSection.innerHTML = '<div id="submitMsg2" style="color: green;">Survey submitted successfully! Loading final step...</div>';
+        }
+        
+        // --- THE ONLY CHANGE IS HERE ---
+        // Redirect to survey3.html and pass along the parameters
+        const params = new URLSearchParams({
+            Company: company,
+            Department: department,
+            Role: role
+        });
+        setTimeout(()=>{ window.location.replace('survey3.html?' + params.toString()); }, 1500);
+      } else {
+        submitMsg.textContent='Failed to submit. Please try again.';
+        submitMsg.style.color = 'red';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalButtonHTML;
+      }
+    }).catch(err=>{
+      console.error(err);
+      submitMsg.textContent='Network error. Please check your connection and try again.';
+      submitMsg.style.color = 'red';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalButtonHTML;
+    });
+  });
+}
+
+setupForm('survey2Form','Survey2Responses');
+</script>
+
+</body>
+</html>

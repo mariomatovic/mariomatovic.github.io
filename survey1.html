@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Survey 1 — Team Culture</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"/>
+<style>
+  .error-msg { color: red; margin-top: 8px; }
+  .success-msg { color: green; margin-top: 8px; }
+  button:disabled { opacity: 0.6; cursor: not-allowed; }
+  textarea { width: 100%; min-height: 60px; margin-top: 6px; margin-bottom: 10px; }
+  fieldset { border: none; padding: 0; margin-bottom: 16px; }
+
+  label { display: block; margin-top: 8px; cursor: pointer; }
+
+  fieldset label {
+    display: grid;
+    grid-template-columns: 20px auto;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.35;
+    margin-left: 0;
+  }
+
+  fieldset label input[type="radio"] {
+    margin: 0;
+    align-self: center;
+    justify-self: center;
+  }
+
+  legend {
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .hint {
+    font-weight: 400;
+    margin: 0 0 8px 0;
+  }
+
+  label input[type="text"] {
+    margin-top: 4px;
+  }
+  
+  .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3 );
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  @keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+  }
+  @-webkit-keyframes spin {
+    to { -webkit-transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+<main class="left-container">
+  <section class="card">
+    <h2>Team Dynamics & Culture Evaluation</h2>
+
+    <div id="login" class="survey-login">
+      <p>Enter your company name and password:</p>
+      <input type="text" id="company" placeholder="Company Name"/>
+      <input type="password" id="password" placeholder="Password"/>
+      <button id="loginBtn">Enter Survey</button>
+      <div id="loginError" class="error-msg"></div>
+    </div>
+
+    <form id="survey1Form" style="display:none;">
+      <label>Department (optional ): <input type="text" name="department"></label>
+      <label>Role (required): <input type="text" name="role" required></label>
+
+      <fieldset>
+        <legend>1. How accurately do you feel people in higher positions recognize your strengths and potential?</legend>
+        <label><input type="radio" name="Q1" value="Far above how I see myself" required>Far above how I see myself</label>
+        <label><input type="radio" name="Q1" value="Slightly above">Slightly above</label>
+        <label><input type="radio" name="Q1" value="About the same">About the same</label>
+        <label><input type="radio" name="Q1" value="Slightly below">Slightly below</label>
+        <label><input type="radio" name="Q1" value="Far below">Far below</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. How well does the version of you at work reflect who you really are?</legend>
+        <p class="hint">(Hint: Think about sharing ideas, personality, or concerns — do you feel free to express yourself, or do you tend to hold back?)</p>
+        <label><input type="radio" name="Q2" value="Completely" required>Completely</label>
+        <label><input type="radio" name="Q2" value="Mostly">Mostly</label>
+        <label><input type="radio" name="Q2" value="Somewhat">Somewhat → please briefly explain</label>
+        <label><input type="radio" name="Q2" value="Slightly">Slightly → please briefly explain</label>
+        <label><input type="radio" name="Q2" value="Not at all">Not at all → please briefly explain</label>
+        <textarea name="Q2_Explanation" placeholder="Explanation (optional)"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. How often do workplace conversations reflect a range of perspectives?</legend>
+        <p class="hint">(Hint: Social psychology shows that sometimes a few voices dominate, so the group’s expressed opinion may not represent everyone equally.)</p>
+        <label><input type="radio" name="Q3" value="Always – most perspectives are heard" required>Always – most perspectives are heard</label>
+        <label><input type="radio" name="Q3" value="Often – usually considered, occasional dominance">Often – usually considered, occasional dominance</label>
+        <label><input type="radio" name="Q3" value="Sometimes – some voices dominate, others hold back">Sometimes – some voices dominate, others hold back</label>
+        <label><input type="radio" name="Q3" value="Rarely – dominated by a few, many don’t share">Rarely – dominated by a few, many don’t share</label>
+        <label><input type="radio" name="Q3" value="Never – only a few opinions shape the discussion">Never – only a few opinions shape the discussion</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>4. When an issue occurs, how does the team generally respond?</legend>
+        <label><input type="radio" name="Q4" value="Focuses on solutions together" required>Focuses on solutions together</label>
+        <label><input type="radio" name="Q4" value="Balanced between solutions and blame">Balanced between solutions and blame</label>
+        <label><input type="radio" name="Q4" value="Primarily focused on blame and fault-finding">Primarily focused on blame and fault-finding</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>5. How would you describe your motivation at work?</legend>
+        <label><input type="radio" name="Q5" value="I feel part of a team working together toward meaningful impact" required>I feel part of a team working together toward meaningful impact</label>
+        <label><input type="radio" name="Q5" value="I enjoy and am motivated by my tasks, even if the broader impact is unclear">I enjoy and am motivated by my tasks, even if the broader impact is unclear</label>
+        <label><input type="radio" name="Q5" value="I do what is expected, but find most motivation outside work">I do what is expected, but find most motivation outside work</label>
+        <label><input type="radio" name="Q5" value="I feel neutral toward my work experience">I feel neutral toward my work experience</label>
+        <label><input type="radio" name="Q5" value="I feel unsatisfied with my work, and it’s hard to see its purpose">I feel unsatisfied with my work, and it’s hard to see its purpose</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>6. How much do leaders dedicate time to getting to know you, supporting your development, using your ideas, and caring about your well-being?</legend>
+        <label><input type="radio" name="Q6" value="Very high – consistently engaged and supportive" required>Very high – consistently engaged and supportive</label>
+        <label><input type="radio" name="Q6" value="High – generally supportive and attentive">High – generally supportive and attentive</label>
+        <label><input type="radio" name="Q6" value="Moderate – some engagement, inconsistent follow-through">Moderate – some engagement, inconsistent follow-through</label>
+        <label><input type="radio" name="Q6" value="Low – little engagement or attention">Low – little engagement or attention</label>
+        <label><input type="radio" name="Q6" value="Very low – rarely or never demonstrate interest">Very low – rarely or never demonstrate interest</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>7. How strong would you rate the chemistry within your team?</legend>
+        <p class="hint">(Hint: Strong chemistry = trust, mutual support, and shared success — feeling that wins and failures belong to the team, not individuals.)</p>
+        <label><input type="radio" name="Q7" value="Very strong" required>Very strong</label>
+        <label><input type="radio" name="Q7" value="Strong">Strong</label>
+        <label><input type="radio" name="Q7" value="Moderate">Moderate</label>
+        <label><input type="radio" name="Q7" value="Weak">Weak</label>
+        <label><input type="radio" name="Q7" value="Very weak">Very weak</label>
+      </fieldset>
+
+      <legend>8. If you were in a position to make changes in your company, what would you fix or do differently?</legend>
+      <textarea name="Q8" placeholder="Your thoughts here " required></textarea>
+
+      <legend>9. Optional: This is your chance to share thoughts not captured by the survey</legend>
+      <textarea name="Q9" placeholder="Your additional comments (optional)"></textarea>
+
+      <button type="submit" id="submitBtn">Submit Survey</button>
+      <div id="submitMsg" class="error-msg"></div>
+    </form>
+  </section>
+</main>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzRKFwaLAwECH0mpGz5B0dsEoQkLq2fF3UlX1SO_jwT1fSx-tOIfbNeFQ3vRl-7HEbUtA/exec';
+
+document.addEventListener('DOMContentLoaded', ( ) => {
+  const loginBtn = document.getElementById('loginBtn');
+  const originalLoginBtnHTML = loginBtn.innerHTML;
+
+  loginBtn.addEventListener('click', () => loginSurvey('survey1'));
+
+  window.loginSurvey = function(survey) {
+    const company = document.getElementById('company').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const loginError = document.getElementById('loginError');
+
+    loginBtn.disabled = true;
+    loginBtn.innerHTML = '<span class="spinner"></span>Checking...';
+    loginError.textContent = '';
+
+    fetch(SCRIPT_URL, {
+      method:'POST',
+      body: JSON.stringify({action:'checkPassword', company, password}),
+    }).then(r=>r.json()).then(data=>{
+      if(data.success){
+        document.getElementById('login').style.display='none';
+        document.getElementById('survey1Form').style.display='block';
+        setupForm('survey1Form','Survey1Responses', company, data.requireName); 
+      } else {
+        setTimeout(()=>{ 
+          loginError.textContent='Invalid company or password.';
+          loginBtn.disabled = false;
+          loginBtn.innerHTML = originalLoginBtnHTML;
+        }, 500);
+      }
+    }).catch(err=>{
+      console.error(err);
+      loginError.textContent='Network error. Check deployment URL and permissions.';
+      loginBtn.disabled = false;
+      loginBtn.innerHTML = originalLoginBtnHTML;
+    });
+  };
+
+  function setupForm(formId, sheetName, company, requireName) {
+    const form = document.getElementById(formId);
+    const submitBtn = document.getElementById('submitBtn');
+    const originalSubmitBtnHTML = submitBtn.innerHTML;
+    
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+
+      const submitMsg = document.getElementById('submitMsg');
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner"></span>Processing...';
+      submitMsg.textContent = '';
+
+      const formData = new FormData(form);
+      const obj = {};
+      formData.forEach((val,key)=>obj[key]=val);
+
+      fetch(SCRIPT_URL,{
+        method:'POST',
+        body: JSON.stringify({action:'submitSurvey', sheet:sheetName, responses:{Company:company,...obj}})
+      }).then(r=>r.json()).then(data=>{
+        if(data.success){
+          // --- THE ONLY CHANGE IS HERE ---
+          // Hide the entire card section instead of just the form
+          const cardSection = document.querySelector('.card');
+          if (cardSection) {
+            cardSection.innerHTML = '<div class="success-msg" style="text-align: center;">Survey submitted successfully! Redirecting...</div>';
+          }
+
+          const params = new URLSearchParams({
+            Company: company,
+            Department: obj.department || '',
+            Role: obj.role || '',
+            RequireName: requireName
+          });
+          setTimeout(() => {
+            window.location.replace('survey2.html?' + params.toString());
+          }, 1500);
+        } else {
+          submitMsg.textContent='Failed to submit. Please try again.';
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalSubmitBtnHTML;
+        }
+      }).catch(err=>{
+        console.error(err);
+        submitMsg.textContent='Network error. Please check your connection and try again.';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalSubmitBtnHTML;
+      });
+    });
+  }
+
+  window.setupForm = setupForm;
+});
+</script>
+
+</body>
+</html>
