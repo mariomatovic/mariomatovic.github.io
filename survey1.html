@@ -91,9 +91,10 @@
         <label><input type="radio" name="Q1" value="Far below">Far below</label>
       </fieldset>
 
-      <fieldset>
+            <fieldset>
         <legend>2. How well does the version of you at work reflect who you really are?</legend>
-        <p class="hint">(Hint: Think about sharing ideas, personality, or concerns — do you feel free to express yourself, or do you tend to hold back?)</p>
+        <!-- NEW HINT TEXT -->
+        <p class="hint">(Hint: Does your work persona closely match your true self, or is there a significant gap between the two?)</p>
         <label><input type="radio" name="Q2" value="Completely" required>Completely</label>
         <label><input type="radio" name="Q2" value="Mostly">Mostly</label>
         <label><input type="radio" name="Q2" value="Somewhat">Somewhat → please briefly explain</label>
@@ -103,14 +104,15 @@
       </fieldset>
 
       <fieldset>
-        <legend>3. How often do workplace conversations reflect a range of perspectives?</legend>
-        <p class="hint">(Hint: Social psychology shows that sometimes a few voices dominate, so the group’s expressed opinion may not represent everyone equally.)</p>
-        <label><input type="radio" name="Q3" value="Always – most perspectives are heard" required>Always – most perspectives are heard</label>
-        <label><input type="radio" name="Q3" value="Often – usually considered, occasional dominance">Often – usually considered, occasional dominance</label>
-        <label><input type="radio" name="Q3" value="Sometimes – some voices dominate, others hold back">Sometimes – some voices dominate, others hold back</label>
-        <label><input type="radio" name="Q3" value="Rarely – dominated by a few, many don’t share">Rarely – dominated by a few, many don’t share</label>
-        <label><input type="radio" name="Q3" value="Never – only a few opinions shape the discussion">Never – only a few opinions shape the discussion</label>
+        <legend>3. Thinking about the casual, non-work conversations in your team, how well do they align with your personal interests?</legend>
+        <!-- The name attribute remains "Q3" for simplicity -->
+        <label><input type="radio" name="Q3" value="Very Well Aligned" required> Very Well Aligned</label>
+        <label><input type="radio" name="Q3" value="Fairly Well Aligned"> Fairly Well Aligned</label>
+        <label><input type="radio" name="Q3" value="Moderately Aligned"> Moderately Aligned</label>
+        <label><input type="radio" name="Q3" value="Poorly Aligned"> Poorly Aligned</label>
+        <label><input type="radio" name="Q3" value="Not Aligned at All"> Not Aligned at All</label>
       </fieldset>
+
 
       <fieldset>
         <legend>4. When an issue occurs, how does the team generally respond?</legend>
@@ -138,14 +140,19 @@
       </fieldset>
 
       <fieldset>
-        <legend>7. How strong would you rate the chemistry within your team?</legend>
-        <p class="hint">(Hint: Strong chemistry = trust, mutual support, and shared success — feeling that wins and failures belong to the team, not individuals.)</p>
-        <label><input type="radio" name="Q7" value="Very strong" required>Very strong</label>
-        <label><input type="radio" name="Q7" value="Strong">Strong</label>
-        <label><input type="radio" name="Q7" value="Moderate">Moderate</label>
-        <label><input type="radio" name="Q7" value="Weak">Weak</label>
-        <label><input type="radio" name="Q7" value="Very weak">Very weak</label>
+        <legend>7. Which of these descriptions best captures the collective energy and working atmosphere of your team?</legend>
+        
+        <label><input type="radio" name="Q7" value="More than the sum of our parts" required> <strong>We are more than the sum of our parts:</strong> It feels like we are comrades on a shared journey. There's a special chemistry, and we build on each other's strengths to create something great together.</label>
+        
+        <label><input type="radio" name="Q7" value="Driven but tense"> <strong>It's professional and driven, but tense:</strong> The standards are high, but there's an underlying fear of making mistakes.</label>
+        
+        <label><input type="radio" name="Q7" value="Friendly but lacks bond"> <strong>It's friendly and laid-back, but lacks a deep bond:</strong> We get the work done and are pleasant to each other, but we don't have a strong sense of shared purpose.</label>
+        
+        <label><input type="radio" name="Q7" value="Fragmented and transactional"> <strong>It feels fragmented and transactional:</strong> We are mostly individuals working in parallel, and our interactions are just about coordinating tasks.</label>
+        
+        <label><input type="radio" name="Q7" value="Disconnected and disengaged"> <strong>It feels disconnected and disengaged:</strong> People seem withdrawn, and there is very little energy or proactive communication in the team.</label>
       </fieldset>
+
 
       <legend>8. If you were in a position to make changes in your company, what would you fix or do differently?</legend>
       <textarea name="Q8" placeholder="Your thoughts here " required></textarea>
@@ -259,4 +266,5 @@ document.addEventListener('DOMContentLoaded', ( ) => {
 
 </body>
 </html>
+
 
