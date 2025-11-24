@@ -7,6 +7,9 @@
   <link rel="icon" href="your-logo.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
+    /* ---------------------------------- */
+    /* 1. Root Variables & Global Resets  */
+    /* ---------------------------------- */
     :root {
       --left-bg: #0f1e2b;
       --right-bg: #1c2f42;
@@ -16,11 +19,28 @@
       --font-main: 'Montserrat', sans-serif;
       --font-title: 'Playfair Display', serif;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html, body { font-family: var(--font-main); background: var(--left-bg); color: var(--text-color); }
-    body { display: flex; flex-direction: column; min-height: 100vh; }
-    main { width: 100%; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      font-family: var(--font-main);
+      background: var(--left-bg);
+      color: var(--text-color);
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      width: 100%;
+    }
 
+    /* ---------------------------------- */
+    /* 2. Layout: Main Sections           */
+    /* ---------------------------------- */
     .quote-top {
       background: var(--quote-color);
       color: #0f1e2b;
@@ -30,56 +50,15 @@
       font-size: clamp(1rem, 1.5vw, 1.1rem);
       line-height: 1.6;
     }
-
     .hero-section {
       display: flex;
       width: 100%;
       border-bottom: 2px solid var(--accent-color);
     }
-
     .left-container {
       flex: 7;
       padding: 40px;
     }
-    .hero-left-text {
-      max-width: 520px;
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      margin: 0 auto;
-    }
-    .hero-left-text h1 { font-family: var(--font-title); font-size: clamp(2rem, 2.8vw, 2.5rem); color: var(--accent-color); margin-bottom: 16px; }
-    
-    .services {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    .service-box {
-      background: linear-gradient(135deg, #ff793f 0%, #ffb17a 100%);
-      color: #fff;
-      text-decoration: none;
-      padding: 16px;
-      border-radius: 16px;
-      flex: 1 1 0;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-      font-size: 0.95rem;
-    }
-    .service-box.highlight-red-border { border: 3px solid red; }
-    .service-box p { margin-top: 8px; font-size: 0.85rem; line-height: 1.4; }
-    .service-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(255,121,63,0.4);
-    }
-    .service-box.placeholder {
-      background: linear-gradient(135deg, #555555 0%, #777777 100%);
-      cursor: default;
-      opacity: 0.9;
-    }
-    .service-box.placeholder:hover { transform: none; box-shadow: none; }
-
     .right-container {
       flex: 2;
       background: var(--right-bg);
@@ -90,6 +69,99 @@
       position: relative;
       border-left: 2px solid var(--accent-color);
     }
+    .content-area {
+      padding: 40px;
+    }
+    footer {
+      width: 100%;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(236, 240, 241, 0.5);
+      padding: 20px 0;
+      background: var(--left-bg);
+    }
+
+    /* ---------------------------------- */
+    /* 3. Components & Content Styling    */
+    /* ---------------------------------- */
+
+    /* Hero Left: Title & Services */
+    .hero-left-text {
+      max-width: 520px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .hero-left-text h1 {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 2.8vw, 2.5rem);
+      color: var(--accent-color);
+      margin-bottom: 16px;
+    }
+
+    /* Polished Services Section */
+    .services {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 25px;
+    }
+    .service-box {
+      background: linear-gradient(135deg, #3a4a5b 0%, #2c3e50 100%);
+      color: #fff;
+      text-decoration: none;
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .service-box p {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      opacity: 0.9;
+    }
+    .service-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    .service-box.placeholder {
+      cursor: default;
+    }
+    .service-box.placeholder:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    .service-box.evaluation {
+      background: linear-gradient(135deg, #d4af7f 0%, #b9905a 100%);
+      color: var(--left-bg);
+      font-weight: 600;
+    }
+    .service-box.featured-lab {
+      grid-column: 1 / -1; /* Span both columns */
+      background: linear-gradient(135deg, #ff793f 0%, #ffb17a 100%);
+      border: 2px solid var(--quote-color);
+      padding: 25px;
+      margin-top: 15px;
+    }
+    .featured-lab h3 {
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+    .featured-lab .subtitle {
+      font-size: 0.9rem;
+      font-style: italic;
+      opacity: 0.9;
+      margin-bottom: 12px;
+    }
+
+    /* Hero Right: Athlete Coach */
     .hero-right {
       width: 100%;
       display: flex;
@@ -98,20 +170,23 @@
       text-align: center;
       gap: 20px;
     }
-    .hero-right h3 { 
-      font-family: var(--font-title); 
+    .hero-right h3 {
+      font-family: var(--font-title);
       font-size: clamp(1.1rem, 1.5vw, 1.3rem);
-      color: var(--accent-color); 
-      font-weight: bold; 
+      color: var(--accent-color);
+      font-weight: bold;
     }
-    .hero-right p { 
-      font-size: clamp(0.9rem, 1.1vw, 0.92rem); 
-      line-height: 1.5; 
+    .hero-right p {
+      font-size: clamp(0.9rem, 1.1vw, 0.92rem);
+      line-height: 1.5;
     }
     .hero-right .description-text {
-        font-size: clamp(0.8rem, 1vw, 0.85rem);
+      font-size: clamp(0.8rem, 1vw, 0.85rem);
     }
-    .hero-right .highlight-red { color: red; font-weight: 600; }
+    .hero-right .highlight-red {
+      color: red;
+      font-weight: 600;
+    }
     .hero-right a {
       background: var(--accent-color);
       color: #fff;
@@ -123,34 +198,34 @@
       transition: all 0.3s;
       align-self: center;
     }
-    .hero-right a:hover { background: #ff9c6a; }
-
-    .content-area {
-      padding: 40px;
+    .hero-right a:hover {
+      background: #ff9c6a;
     }
 
-    .relocated-photo-wrapper {
-      max-width: 450px;
-      width: 100%;
-      margin: 40px auto 0 auto; /* Give it space from the content above */
+    /* Content Cards */
+    .card {
+      background: var(--right-bg);
+      padding: 25px;
+      border-radius: 12px;
+      margin-top: 40px;
+      font-size: 0.95rem;
+      line-height: 1.7;
     }
-    .relocated-photo-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 8px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-     /* filter: grayscale(100%); */
-      transition: filter 0.4s ease;
+    .card h2 {
+      font-family: var(--font-title);
+      color: var(--accent-color);
+      margin-bottom: 12px;
+      font-size: 1.8rem;
     }
-    .relocated-photo-wrapper img:hover {
-      filter: grayscale(0%);
+    .card ul {
+      list-style: none;
+      padding: 0;
     }
-
-    .card { background: var(--right-bg); padding: 25px; border-radius: 12px; margin-top: 40px; font-size: 0.95rem; line-height: 1.7; }
-    .card h2 { font-family: var(--font-title); color: var(--accent-color); margin-bottom: 12px; font-size: 1.8rem; }
-    .card ul { list-style: none; padding: 0; }
-    .card ul li { margin-bottom: 10px; padding-left: 1.2em; position: relative; }
+    .card ul li {
+      margin-bottom: 10px;
+      padding-left: 1.2em;
+      position: relative;
+    }
     .card ul li::before {
       content: '•';
       color: var(--accent-color);
@@ -159,94 +234,71 @@
       font-size: 1.2em;
       line-height: 1;
     }
-    .card ul li strong { color: var(--quote-color); }
+    .card ul li strong {
+      color: var(--quote-color);
+    }
+    .philosophy-quote {
+      font-style: italic;
+      margin-bottom: 1em;
+      padding-left: 1em;
+      border-left: 3px solid var(--accent-color);
+    }
+    .philosophy-quote cite {
+      display: block;
+      text-align: right;
+      margin-top: 0.5em;
+      font-style: normal;
+    }
 
-    footer {
+    /* Relocated Photo */
+    .relocated-photo-wrapper {
+      max-width: 450px;
       width: 100%;
-      text-align: center;
-      font-size: 0.85rem;
-      color: rgba(236,240,241,0.5);
-      padding: 20px 0;
-      background: var(--left-bg);
+      margin: 40px auto 0 auto;
+    }
+    .relocated-photo-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+      transition: filter 0.4s ease;
+    }
+    .relocated-photo-wrapper img:hover {
+      filter: grayscale(0%);
     }
 
-
-   /* --- POLISHED SERVICES STYLES --- */
-.services {
-  display: grid; /* Use Grid for perfect alignment */
-  grid-template-columns: 1fr 1fr; /* Two columns */
-  gap: 15px;
-  margin-top: 25px; /* Added more space from the title */
-}
-
-.service-box {
-  background: linear-gradient(135deg, #3a4a5b 0%, #2c3e50 100%);
-  color: #fff;
-  text-decoration: none;
-  padding: 20px; /* Increased padding */
-  border-radius: 16px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-  font-size: 0.95rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.service-box p {
-  margin-top: 8px;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  opacity: 0.9; /* Soften the subtext slightly */
-}
-
-.service-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-/* Style for the important "Free Evaluation" */
-.service-box.evaluation {
-  background: linear-gradient(135deg, #d4af7f 0%, #b9905a 100%);
-  color: var(--left-bg); /* Dark text on light background */
-  font-weight: 600;
-}
-
-/* Style for the main event "Folk Lab" */
-.service-box.featured-lab {
-  grid-column: 1 / -1; /* This makes the card span both columns */
-  background: linear-gradient(135deg, #ff793f 0%, #ffb17a 100%);
-  border: 2px solid var(--quote-color);
-  padding: 25px;
-  margin-top: 15px; /* Add space between the rows */
-}
-
-.featured-lab h3 {
-  font-family: var(--font-title);
-  font-size: 1.3rem;
-  margin-bottom: 8px;
-}
-
-.featured-lab .subtitle {
-  font-size: 0.9rem;
-  font-style: italic;
-  opacity: 0.9;
-  margin-bottom: 12px;
-}
-/* --- END STYLES --- */
-
-
-    
-
+    /* ---------------------------------- */
+    /* 4. Responsive Design               */
+    /* ---------------------------------- */
     @media (max-width: 900px) {
-      .hero-section { flex-direction: column; }
-      .left-container, .right-container { flex: unset; width: 100%; padding: 20px; }
-      .right-container { order: -1; border-left: none; border-bottom: 2px solid var(--accent-color); }
-      .hero-section { border-bottom: none; }
-      .services { flex-direction: column; }
-      .content-area { padding: 20px; }
+      .hero-section {
+        flex-direction: column;
+        border-bottom: none;
+      }
+      .left-container, .right-container {
+        flex: unset;
+        width: 100%;
+        padding: 20px;
+      }
+      .right-container {
+        order: -1;
+        border-left: none;
+        border-bottom: 2px solid var(--accent-color);
+      }
+      .services {
+        /* On mobile, stack all service boxes vertically */
+        grid-template-columns: 1fr;
+      }
+      .service-box.featured-lab {
+        margin-top: 0; /* Remove top margin on mobile */
+      }
+      .content-area {
+        padding: 20px;
+      }
     }
-  </style>
+</style>
+
 </head>
 <body>
 
@@ -376,6 +428,7 @@
 </body>
 
 </html>
+
 
 
 
