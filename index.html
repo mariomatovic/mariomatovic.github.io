@@ -170,6 +170,61 @@
       background: var(--left-bg);
     }
 
+
+    /* --- NEW FEATURED SERVICE STYLES --- */
+.services {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.services-left {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+}
+.service-box {
+  background: linear-gradient(135deg, #3a4a5b 0%, #2c3e50 100%); /* A more subtle default color */
+  color: #fff;
+  text-decoration: none;
+  padding: 16px;
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+.service-box.featured {
+  flex: 1.5; /* Makes this box wider */
+  background: linear-gradient(135deg, #ff793f 0%, #ffb17a 100%);
+  border: 2px solid var(--quote-color);
+  justify-content: space-around;
+  padding: 20px;
+}
+.featured h3 {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+.featured .subtitle {
+  font-size: 0.9rem;
+  font-style: italic;
+  opacity: 0.9;
+  margin-bottom: 12px;
+}
+.featured p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+/* --- END NEW STYLES --- */
+
+    
+
     @media (max-width: 900px) {
       .hero-section { flex-direction: column; }
       .left-container, .right-container { flex: unset; width: 100%; padding: 20px; }
@@ -192,14 +247,28 @@
         <div class="hero-left-text">
           <h1>People, Culture & Performance Specialist</h1>
           <div class="services">
-            <a class="service-box highlight-red-border" href="survey1.html">
-              <strong>Free Culture Evaluation</strong>
-              <p>Get a snapshot of your team's dynamics with this anonymous survey.</p>
-            </a>
-            <div class="service-box placeholder">
-              <strong>Team Services</strong>
-              <p>Coming soon</p>
-            </div>
+  <!-- Left column for smaller services -->
+  <div class="services-left">
+    <a class="service-box" href="survey1.html">
+      <strong>Free Culture Evaluation</strong>
+      <p>A quick, anonymous survey to get a snapshot of your team's dynamics.</p>
+    </a>
+    <div class="service-box placeholder">
+      <strong>Speaking & Workshops</strong>
+      <p>Coming soon</p>
+    </div>
+  </div>
+
+  <!-- The Main Event: Stavanger Folk Lab -->
+  <a class="service-box featured" href="https://mariomatovic.github.io/stavanger-folk-lab/" target="_blank">
+    <div>
+      <h3>Stavanger Folk Lab</h3>
+      <div class="subtitle">An open laboratory for building better teams.</div>
+      <p>This isn't surface-level HR. Explore a live library of the deep, unspoken psychological truths that govern our work lives.</p>
+    </div>
+  </a>
+</div>
+
             <div class="service-box placeholder">
               <strong>Speaking</strong>
               <p>Coming soon</p>
@@ -302,4 +371,5 @@
 </body>
 
 </html>
+
 
