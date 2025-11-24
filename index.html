@@ -171,25 +171,19 @@
     }
 
 
-    /* --- NEW FEATURED SERVICE STYLES --- */
+   /* --- POLISHED SERVICES STYLES --- */
 .services {
-  display: flex;
-  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  display: grid; /* Use Grid for perfect alignment */
+  grid-template-columns: 1fr 1fr; /* Two columns */
   gap: 15px;
-  justify-content: center;
-  margin-top: 20px;
+  margin-top: 25px; /* Added more space from the title */
 }
-.services-left {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  flex: 1;
-}
+
 .service-box {
-  background: linear-gradient(135deg, #3a4a5b 0%, #2c3e50 100%); /* A more subtle default color */
+  background: linear-gradient(135deg, #3a4a5b 0%, #2c3e50 100%);
   color: #fff;
   text-decoration: none;
-  padding: 16px;
+  padding: 20px; /* Increased padding */
   border-radius: 16px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -197,31 +191,50 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-grow: 1;
 }
-.service-box.featured {
-  flex: 1.5; /* Makes this box wider */
+
+.service-box p {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  opacity: 0.9; /* Soften the subtext slightly */
+}
+
+.service-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Style for the important "Free Evaluation" */
+.service-box.evaluation {
+  background: linear-gradient(135deg, #d4af7f 0%, #b9905a 100%);
+  color: var(--left-bg); /* Dark text on light background */
+  font-weight: 600;
+}
+
+/* Style for the main event "Folk Lab" */
+.service-box.featured-lab {
+  grid-column: 1 / -1; /* This makes the card span both columns */
   background: linear-gradient(135deg, #ff793f 0%, #ffb17a 100%);
   border: 2px solid var(--quote-color);
-  justify-content: space-around;
-  padding: 20px;
+  padding: 25px;
+  margin-top: 15px; /* Add space between the rows */
 }
-.featured h3 {
+
+.featured-lab h3 {
   font-family: var(--font-title);
   font-size: 1.3rem;
   margin-bottom: 8px;
 }
-.featured .subtitle {
+
+.featured-lab .subtitle {
   font-size: 0.9rem;
   font-style: italic;
   opacity: 0.9;
   margin-bottom: 12px;
 }
-.featured p {
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-/* --- END NEW STYLES --- */
+/* --- END STYLES --- */
+
 
     
 
@@ -243,51 +256,43 @@
     </div>
 
     <div class="hero-section">
-      <div class="left-container">
-        <div class="hero-left-text">
-          <h1>People, Culture & Performance Specialist</h1>
-          <div class="services">
-  <!-- Left column for smaller services -->
-  <div class="services-left">
-    <a class="service-box" href="survey1.html">
-      <strong>Free Culture Evaluation</strong>
-      <p>A quick, anonymous survey to get a snapshot of your team's dynamics.</p>
-    </a>
-    <div class="service-box placeholder">
-      <strong>Speaking & Workshops</strong>
-      <p>Coming soon</p>
-    </div>
+  <div class="left-container">
+    <div class="hero-left-text">
+      <h1>People, Culture & Performance Specialist</h1>
+      <div class="services">
+  <!-- Top Row -->
+  <a class="service-box evaluation" href="survey1.html">
+    <strong>Free Culture Evaluation</strong>
+    <p>Get a snapshot of your team's dynamics with this anonymous survey.</p>
+  </a>
+
+  <div class="service-box placeholder">
+    <strong>Speaking & Workshops</strong>
+    <p>Coming soon</p>
   </div>
 
-  <!-- The Main Event: Stavanger Folk Lab -->
-  <a class="service-box featured" href="https://mariomatovic.github.io/stavanger-folk-lab/" target="_blank">
-    <div>
-      <h3>Stavanger Folk Lab</h3>
-      <div class="subtitle">An open laboratory for building better teams.</div>
-      <p>This isn't surface-level HR. Explore a live library of the deep, unspoken psychological truths that govern our work lives.</p>
-    </div>
+  <!-- Bottom Row - Full Width Feature -->
+  <a class="service-box featured-lab" href="https://mariomatovic.github.io/stavanger-folk-lab/" target="_blank">
+    <h3>Stavanger Folk Lab</h3>
+    <div class="subtitle">An open laboratory for building better teams.</div>
+    <p>This isn't surface-level HR. Explore a live library of the deep, unspoken psychological truths that govern our work lives.</p>
   </a>
 </div>
 
-            <div class="service-box placeholder">
-              <strong>Speaking</strong>
-              <p>Coming soon</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="right-container">
-        <div class="hero-right">
-          <div>
-            <h3>Mental Performance Coach for Athletes</h3>
-            <p class="description-text">Supporting individual athletes across various sports for several years in Slovenia, followed by a first-league professional football club in Finland—working with U17, reserve, senior men’s and women’s teams, as well as individual players on mental performance while nurturing their well-being.</p>
-            <p class="highlight-red">Is your child an ambitious teen athlete?</p>
-          </div>
-          <a href="#contact">Get in touch</a>
-        </div>
-      </div>
     </div>
+  </div>
+
+  <div class="right-container">
+    <div class="hero-right">
+      <div>
+        <h3>Mental Performance Coach for Athletes</h3>
+        <p class="description-text">Supporting individual athletes across various sports for several years in Slovenia, followed by a first-league professional football club in Finland—working with U17, reserve, senior men’s and women’s teams, as well as individual players on mental performance while nurturing their well-being.</p>
+        <p class="highlight-red">Is your child an ambitious teen athlete?</p>
+      </div>
+      <a href="#contact">Get in touch</a>
+    </div>
+  </div>
+</div>
 
     <div class="content-area">
       
@@ -371,5 +376,6 @@
 </body>
 
 </html>
+
 
 
