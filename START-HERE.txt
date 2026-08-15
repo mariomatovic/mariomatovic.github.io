@@ -1,0 +1,15 @@
+MARIO MATOVIC — SIMPLE GITHUB UPLOAD
+
+You do NOT need to understand React or code for this upload.
+
+1. Install GitHub Desktop: https://desktop.github.com
+2. Sign in using the GitHub account for mariomatovic.
+3. Clone the repository called mariomatovic.github.io.
+4. Click Show in Explorer/Finder to open the repository folder.
+5. Delete the old website files inside that folder.
+6. Copy EVERY file and folder from this folder into the repository folder.
+7. In GitHub Desktop, click Commit to main, then click Push origin.
+8. On GitHub, open Settings > Pages and select main branch + /(root), then Save.
+9. Wait a few minutes and open https://mariomatovic.github.io
+
+If anything looks confusing, stop and send me a screenshot. Do not delete the hidden .git folder.
