@@ -49,3 +49,20 @@ Keep the email personal by adding one honest sentence about the club’s current
 |---|---|
 | **Full website** | `https://mariomatovic.github.io/` |
 | **Standalone Performance Window** | `https://mariomatovic.github.io/performance-window` |
+
+---
+
+## New: Direct Mental Training (added on top of the existing site)
+
+This package now also includes a small standalone tool at `/method/`, plus a red **"Try the Method"** button fixed to the top-right corner of every page on the main site, linking to it.
+
+- **Nothing in the existing site was changed or removed.** The button lives in its own `<style>`/`<a>` block appended at the very end of `index.html` and `404.html` (search for `DIRECT MENTAL TRAINING — CTA` in either file), completely outside the app's own code, so it can't interfere with it. To remove the button later, just delete that block.
+- The tool itself is one self-contained file: `method/index.html`. No build step, no framework, no dependencies — plain HTML/CSS/JS, so it will keep working indefinitely and is easy to edit by hand.
+- **To add a 5th command later:** open `method/index.html`, find the `STATES` array near the top of the `<script>` at the bottom of the file, and copy/paste one of the existing objects (id, name, desc, teaching, command). Nothing else needs to change.
+- **To add your video:** the hero section has a placeholder video frame with an HTML comment right above it showing exactly what markup to swap in (a `<video>` tag or a YouTube/Vimeo embed).
+- **Feedback form:** currently just confirms locally in the browser ("Thanks — noted.") — it isn't wired up to send anywhere yet. There's a `// TODO` comment at the spot in the script where a real form service or email endpoint can be plugged in.
+- Live links once published:
+
+| Use | Link |
+|---|---|
+| **Direct Mental Training** | `https://mariomatovic.github.io/method/` |

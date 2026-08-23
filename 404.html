@@ -76,5 +76,84 @@ Error generating stack: `+l.message+`
 
     <div id="root"></div>
     <script defer src="https://manus-analytics.com/umami" data-website-id="97f46ce6-2a3d-4402-996b-8742658dadbf"></script>
+    <!-- ============================================================
+         DIRECT MENTAL TRAINING — CTA (added, nothing above this
+         comment was changed). Lives outside the app's #root div,
+         so it can't be touched or removed by the React app itself.
+         To remove it later: delete this block, from this comment
+         down to "END DIRECT MENTAL TRAINING CTA".
+         ============================================================ -->
+    <style>
+      #dmt-cta{
+        position:fixed;
+        top:18px;
+        right:20px;
+        z-index:999999;
+        display:flex;
+        align-items:center;
+        gap:10px;
+        background:#101e2c;
+        border:1px solid #e0242f;
+        padding:10px 16px 10px 14px;
+        text-decoration:none;
+        box-shadow:0 6px 24px #0000004d, 0 0 0 0 #e0242f66;
+        transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+        animation:dmt-in .5s ease both, dmt-glow 2.6s ease-in-out infinite 1s;
+      }
+      #dmt-cta:hover{ background:#e0242f; transform:translateY(-1px); }
+      #dmt-cta .dmt-dot{
+        width:7px; height:7px; border-radius:50%;
+        background:#e0242f; flex:none;
+        animation:dmt-pulse 1.8s ease-in-out infinite;
+      }
+      #dmt-cta:hover .dmt-dot{ background:#f4f0e7; }
+      #dmt-cta .dmt-label{
+        font-family:'IBM Plex Mono','Courier New',monospace;
+        font-size:11px;
+        letter-spacing:.12em;
+        text-transform:uppercase;
+        color:#f4f0e7;
+        white-space:nowrap;
+      }
+      #dmt-close{
+        appearance:none; border:none; background:none; cursor:pointer;
+        color:#f4f0e799; font-size:14px; line-height:1; padding:2px 0 2px 4px;
+        font-family:inherit;
+      }
+      #dmt-close:hover{ color:#f4f0e7; }
+      @keyframes dmt-pulse{ 0%,100%{opacity:1;} 50%{opacity:.25;} }
+      @keyframes dmt-glow{
+        0%,100%{ box-shadow:0 6px 24px #0000004d, 0 0 0 0 #e0242f4d; }
+        50%{ box-shadow:0 6px 24px #0000004d, 0 0 0 6px #e0242f00; }
+      }
+      @keyframes dmt-in{
+        from{ opacity:0; transform:translateY(-6px); }
+        to{ opacity:1; transform:translateY(0); }
+      }
+      @media (max-width:600px){
+        #dmt-cta{ top:12px; right:12px; padding:9px 12px; gap:8px; }
+        #dmt-cta .dmt-label{ font-size:10px; }
+      }
+      @media (prefers-reduced-motion: reduce){
+        #dmt-cta, #dmt-cta .dmt-dot{ animation:none; }
+      }
+    </style>
+    <a href="/method/" id="dmt-cta" aria-label="Try Direct Mental Training, an experimental mental-training method">
+      <span class="dmt-dot"></span>
+      <span class="dmt-label">Try&nbsp;the&nbsp;Method</span>
+      <button type="button" id="dmt-close" aria-label="Hide this for now" onclick="event.preventDefault();event.stopPropagation();var e=document.getElementById('dmt-cta');if(e){e.style.display='none';}try{sessionStorage.setItem('dmt-cta-hidden','1');}catch(err){}">&times;</button>
+    </a>
+    <script>
+      (function(){
+        try{
+          if (sessionStorage.getItem('dmt-cta-hidden') === '1') {
+            var el = document.getElementById('dmt-cta');
+            if (el) el.style.display = 'none';
+          }
+        } catch(e) {}
+      })();
+    </script>
+    <!-- END DIRECT MENTAL TRAINING CTA -->
+
   </body>
 </html>
