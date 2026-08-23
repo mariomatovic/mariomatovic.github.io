@@ -76,5 +76,37 @@ Error generating stack: `+l.message+`
 
     <div id="root"></div>
     <script defer src="https://manus-analytics.com/umami" data-website-id="97f46ce6-2a3d-4402-996b-8742658dadbf"></script>
+
+<style id="retraining-launcher-style">
+#retraining-method-launcher{position:fixed;top:122px;left:116px;z-index:9999;display:inline-flex;align-items:center;gap:10px;padding:15px 22px;background:#e85d2a;color:#fff;text-decoration:none;border:1px solid #f08a61;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 10px 28px rgba(0,0,0,.22);transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
+#retraining-method-launcher:hover{background:#f06d3a;transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.28)}
+#retraining-method-launcher::after{content:'→';font-size:18px;line-height:1}
+@media (max-width: 900px){#retraining-method-launcher{top:88px;left:20px;padding:13px 17px;font-size:11px}}
+@media (max-width: 560px){#retraining-method-launcher{top:78px;left:16px;right:16px;justify-content:center;padding:13px 16px;font-size:11px}}
+</style>
+<script id="retraining-launcher-script">
+(function(){
+  function addLauncher(){
+    var path=location.pathname;
+    var shouldShow=(path==='/' || path==='/index.html' || path==='');
+    var existing=document.getElementById('retraining-method-launcher');
+    if(!shouldShow){ if(existing) existing.remove(); return; }
+    if(existing) return;
+    var a=document.createElement('a');
+    a.id='retraining-method-launcher';
+    a.href='/retraining-automatic-responses/';
+    a.setAttribute('aria-label','Try the method: Retraining Automatic Responses');
+    a.textContent='TRY THE METHOD';
+    document.body.appendChild(a);
+  }
+  ['popstate','pushstate','replacestate'].forEach(function(evt){addEventListener(evt,addLauncher);});
+  var originalPush=history.pushState, originalReplace=history.replaceState;
+  history.pushState=function(){var r=originalPush.apply(this,arguments);dispatchEvent(new Event('pushstate'));return r;};
+  history.replaceState=function(){var r=originalReplace.apply(this,arguments);dispatchEvent(new Event('replacestate'));return r;};
+  addEventListener('hashchange',addLauncher);
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',addLauncher); else addLauncher();
+  setTimeout(addLauncher,500);
+})();
+</script>
   </body>
 </html>
